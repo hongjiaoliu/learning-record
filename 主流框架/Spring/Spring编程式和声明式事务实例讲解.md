@@ -30,3 +30,5 @@
 + 使用基于 @Transactional 的全注解方式事务管理完成转账业务
 
 > [源代码](https://github.com/hongjiaoliu/course-spring-transaction.git)
+
+> 转自：[https://juejin.im/post/5b010f27518825426539ba38](https://juejin.im/post/5b010f27518825426539ba38)
