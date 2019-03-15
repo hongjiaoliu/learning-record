@@ -1,4 +1,4 @@
-## 事务概念回顾
+## 一： 事务概念回顾
 > 什么是事务？
 
 事务是逻辑上的一组操作，要么都执行，要么都不执行。
@@ -7,12 +7,12 @@
 
 ![](https://github.com/hongjiaoliu/learning-record/blob/master/pictures/1637b08b98619455.jpg?raw=true)
 
-1. 原子性： 事务是最小的执行单位，不允许分割。事务的原子性确保动作要么全部完成，要么完全不起作用；
-2. 一致性： 执行事务前后，数据保持一致；
-3. 隔离性： 并发访问数据库时，一个用户的事物不被其他事物所干扰，各并发事务之间数据库是独立的；
-4. 持久性: 一个事务被提交之后。它对数据库中数据的改变是持久的，即使数据库发生故障也不应该对其有任何影响。
+1. **原子性（atomicity）**： 事务是最小的执行单位，不允许分割。事务的原子性确保动作要么全部完成，要么完全不起作用；
+2. **一致性（consistency）**： 执行事务前后，数据保持一致；
+3. **隔离性（isolation）**： 并发访问数据库时，一个用户的事务不被其他事务所干扰，各并发事务之间数据库是独立的；
+4. **持久性（durability）**: 一个事务被提交之后。它对数据库中数据的改变是持久的，即使数据库发生故障也不应该对其有任何影响。
 
-## Spring事务管理接口介绍
+## 二： Spring事务管理接口介绍
 
 > Spring事务管理接口：
 
@@ -22,9 +22,10 @@
 
 所谓事务管理，其实就是“按照给定的事务规则来执行提交或者回滚操作”。
 
-> PlatformTransactionManager接口介绍
+> 1 PlatformTransactionManager接口介绍
 
-Spring并不直接管理事务，而是提供了多种事务管理器 ，他们将事务管理的职责委托给Hibernate或者JTA等持久化机制所提供的相关平台框架的事务来实现。 Spring事务管理器的接口是： org.springframework.transaction.PlatformTransactionManager ，通过这个接口，Spring为各个平台如JDBC、Hibernate等都提供了对应的事务管理器，但是具体的实现就是各个平台自己的事情了。
+Spring并不直接管理事务，而是提供了多种事务管理器 ，**他们将事务管理的职责委托给Hibernate或者JTA等持久化机制所提供的相关平台框架的事务来实现**。
+Spring事务管理器的接口是： org.springframework.transaction.PlatformTransactionManager ，通过这个接口，Spring为各个平台如JDBC、Hibernate等都提供了对应的事务管理器，但是具体的实现就是各个平台自己的事情了。
 
 PlatformTransactionManager接口代码如下：
 
@@ -32,11 +33,18 @@ PlatformTransactionManager接口中定义了三个方法：
 
 ```
 Public interface PlatformTransactionManager()...{  
-    // Return a currently active transaction or create a new one, according to the specified propagation behavior（根据指定的传播行为，返回当前活动的事务或创建一个新事务。）
+
+    // Return a currently active transaction or create a new one, according to the specified propagation behavior
+    //（根据指定的传播行为，返回当前活动的事务或创建一个新事务。）
     TransactionStatus getTransaction(TransactionDefinition definition) throws TransactionException;
-    // Commit the given transaction, with regard to its status（使用事务目前的状态提交事务）
+
+    // Commit the given transaction, with regard to its status
+    //（使用事务目前的状态提交事务）
     Void commit(TransactionStatus status) throws TransactionException;  
-    // Perform a rollback of the given transaction（对执行的事务进行回滚）
+
+
+    // Perform a rollback of the given transaction
+    //（对执行的事务进行回滚）
     Void rollback(TransactionStatus status) throws TransactionException;  
     }
 
@@ -45,6 +53,22 @@ Public interface PlatformTransactionManager()...{
 我们刚刚也说了Spring中PlatformTransactionManager根据不同持久层框架所对应的接口实现类,几个比较常见的如下图所示
 
 ![](https://github.com/hongjiaoliu/learning-record/blob/master/pictures/1637b21877cf626d.jpg?raw=true)
+
+> JPA
+
+全称Java Persistence API。
+
+JPA通过JDK 5.0注解或XML描述对象－关系表的映射关系，并将运行期的实体对象持久化到数据库中。
+
+[百度百科](http://baike.baidu.com/view/1036852.htm)
+
+> JTA
+
+即Java Transaction API，译为Java事务API。
+
+JTA允许应用程序执行分布式事务处理——在两个或多个网络计算机资源上访问并且更新数据。JDBC驱动程序的JTA支持极大地增强了数据访问能力。
+
+[百度百科](http://baike.baidu.com/view/512788.htm)
 
 比如我们在使用JDBC或者iBatis（就是Mybatis）进行数据持久化操作时,我们的xml配置通常如下：
 
@@ -57,7 +81,7 @@ Public interface PlatformTransactionManager()...{
 	</bean>
 ```
 
-> TransactionDefinition接口介绍
+> 2 TransactionDefinition接口介绍
 
 事务管理器接口 PlatformTransactionManager 通过 getTransaction(TransactionDefinition definition) 方法来得到一个事务，这个方法里面的参数是 TransactionDefinition类 ，这个类就定义了一些基本的事务属性。
 
@@ -168,7 +192,7 @@ TransactionDefinition 接口中定义了五个表示隔离级别的常量：
 这些规则定义了哪些异常会导致事务回滚而哪些不会。默认情况下，事务只有遇到运行期异常时才会回滚，而在遇到检查型异常时不会回滚（这一行为与EJB的回滚行为是一致的）。
 但是你可以声明事务在遇到特定的检查型异常时像遇到运行期异常那样回滚。同样，你还可以声明事务遇到特定的异常不回滚，即使这些异常是运行期异常。
 
-> TransactionStatus接口介绍
+> 3 TransactionStatus接口介绍
 
 TransactionStatus接口用来记录事务的状态 该接口定义了一组方法,用来获取或判断事务的相应状态信息.
 
