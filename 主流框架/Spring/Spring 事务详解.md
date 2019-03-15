@@ -103,9 +103,9 @@ public interface TransactionDefinition {
     int getPropagationBehavior();
     // 返回事务的隔离级别，事务管理器根据它来控制另外一个事务可以看到本事务内的哪些数据
     int getIsolationLevel();
-    // 返回事务必须在多少秒内完成
-    //返回事务的名字
+    // 返回事务的名字
     String getName()；
+    // 返回事务必须在多少秒内完成
     int getTimeout();  
     // 返回是否优化为只读事务。
     boolean isReadOnly();
@@ -156,7 +156,7 @@ TransactionDefinition 接口中定义了五个表示隔离级别的常量：
 
 当事务方法被另一个事务方法调用时，必须指定事务应该如何传播。例如：方法可能继续在现有事务中运行，也可能开启一个新事务，并在自己的事务中运行。在TransactionDefinition定义中包括了如下几个表示传播行为的常量：
 
-支持当前事务的情况：
+**支持当前事务的情况**：
 
 + TransactionDefinition.PROPAGATION_REQUIRED： 如果当前存在事务，则加入该事务；如果当前没有事务，则创建一个新的事务。
 
@@ -164,7 +164,7 @@ TransactionDefinition 接口中定义了五个表示隔离级别的常量：
 
 + TransactionDefinition.PROPAGATION_MANDATORY： 如果当前存在事务，则加入该事务；如果当前没有事务，则抛出异常。（mandatory：强制性）
 
-不支持当前事务的情况：
+**不支持当前事务的情况**：
 
 + TransactionDefinition.PROPAGATION_REQUIRES_NEW： 创建一个新的事务，如果当前存在事务，则把当前事务挂起。
 
@@ -172,25 +172,31 @@ TransactionDefinition 接口中定义了五个表示隔离级别的常量：
 
 + TransactionDefinition.PROPAGATION_NEVER： 以非事务方式运行，如果当前存在事务，则抛出异常。
 
-其他情况：
+**其他情况**：
 
 + TransactionDefinition.PROPAGATION_NESTED： 如果当前存在事务，则创建一个事务作为当前事务的嵌套事务来运行；如果当前没有事务，则该取值等价于TransactionDefinition.PROPAGATION_REQUIRED。
 
-这里需要指出的是，前面的六种事务传播行为是 Spring 从 EJB 中引入的，他们共享相同的概念。而 PROPAGATION_NESTED 是 Spring 所特有的。以 PROPAGATION_NESTED 启动的事务内嵌于外部事务中（如果存在外部事务的话），此时，内嵌事务并不是一个独立的事务，它依赖于外部事务的存在，只有通过外部的事务提交，才能引起内部事务的提交，嵌套的子事务不能单独提交。如果熟悉 JDBC 中的保存点（SavePoint）的概念，那嵌套事务就很容易理解了，其实嵌套的子事务就是保存点的一个应用，一个事务中可以包括多个保存点，每一个嵌套子事务。另外，外部事务的回滚也会导致嵌套子事务的回滚。
+这里需要指出的是，前面的六种事务传播行为是 Spring 从 EJB 中引入的，他们共享相同的概念。**而 PROPAGATION_NESTED 是 Spring 所特有的**。以 PROPAGATION_NESTED 启动的事务内嵌于外部事务中（如果存在外部事务的话），此时，内嵌事务并不是一个独立的事务，它依赖于外部事务的存在，只有通过外部的事务提交，才能引起内部事务的提交，嵌套的子事务不能单独提交。
+如果熟悉 JDBC 中的保存点（SavePoint）的概念，那嵌套事务就很容易理解了，其实嵌套的子事务就是保存点的一个应用，一个事务中可以包括多个保存点，每一个嵌套子事务。另外，外部事务的回滚也会导致嵌套子事务的回滚。
 
 
 #### (3) 事务超时属性(一个事务允许执行的最长时间)
 
-所谓事务超时，就是指一个事务所允许执行的最长时间，如果超过该时间限制但事务还没有完成，则自动回滚事务。在 TransactionDefinition 中以 int 的值来表示超时时间，其单位是秒。
+所谓事务超时，就是指一个事务所允许执行的最长时间，如果超过该时间限制但事务还没有完成，则自动回滚事务。在 TransactionDefinition 中以 int 的值来表示超时时间，**其单位是秒**。
 
-#### (4) 事务只读属性（对事物资源是否执行只读操作）
+#### (4) 事务只读属性（对事务资源是否执行只读操作）
 
-事务的只读属性是指，对事务性资源进行只读操作或者是读写操作。所谓事务性资源就是指那些被事务管理的资源，比如数据源、 JMS 资源，以及自定义的事务性资源等等。如果确定只对事务性资源进行只读操作，那么我们可以将事务标志为只读的，以提高事务处理的性能。在 TransactionDefinition 中以 boolean 类型来表示该事务是否只读。
+事务的只读属性是指，对事务性资源进行只读操作或者是读写操作。
+所谓事务性资源就是指那些被事务管理的资源，比如数据源、 JMS 资源，以及自定义的事务性资源等等。
+如果确定只对事务性资源进行只读操作，那么我们可以将事务标志为只读的，以提高事务处理的性能。
+在 TransactionDefinition 中以 boolean 类型来表示该事务是否只读。
 
 #### (5) 回滚规则（定义事务回滚规则）
 
-这些规则定义了哪些异常会导致事务回滚而哪些不会。默认情况下，事务只有遇到运行期异常时才会回滚，而在遇到检查型异常时不会回滚（这一行为与EJB的回滚行为是一致的）。
-但是你可以声明事务在遇到特定的检查型异常时像遇到运行期异常那样回滚。同样，你还可以声明事务遇到特定的异常不回滚，即使这些异常是运行期异常。
+这些规则定义了哪些异常会导致事务回滚而哪些不会。
+默认情况下，事务只有遇到**运行期异常**时才会回滚，而在遇到检查型异常时不会回滚（这一行为与EJB的回滚行为是一致的）。
+但是你可以声明事务在遇到特定的检查型异常时像遇到运行期异常那样回滚。
+同样，你还可以声明事务遇到特定的异常不回滚，即使这些异常是运行期异常。
 
 > 3 TransactionStatus接口介绍
 
@@ -202,11 +208,18 @@ TransactionStatus接口接口内容如下：
 
 ```
 public interface TransactionStatus{
-    boolean isNewTransaction(); // 是否是新的事物
-    boolean hasSavepoint(); // 是否有恢复点
-    void setRollbackOnly();  // 设置为只回滚
-    boolean isRollbackOnly(); // 是否为只回滚
-    boolean isCompleted; // 是否已完成
+
+    // 是否是新的事物
+    boolean isNewTransaction();
+    // 是否有恢复点
+    boolean hasSavepoint();
+    // 设置为只回滚
+    void setRollbackOnly();
+    // 是否为只回滚
+    boolean isRollbackOnly();
+    // 是否已完成
+    boolean isCompleted;
+    
 }
 ```
 
