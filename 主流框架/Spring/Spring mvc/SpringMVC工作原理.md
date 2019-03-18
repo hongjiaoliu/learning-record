@@ -34,7 +34,7 @@ SpringMVC的工作原理图：
 
 + HandlerMapping：通过扩展处理器映射器实现不同的映射方式，例如：配置文件方式，实现接口方式，注解方式等。
 
-+ HandlAdapter：通过扩展处理器适配器，支持更多类型的处理器。
++ HandlerAdapter：通过扩展处理器适配器，支持更多类型的处理器。
 
 + ViewResolver：通过扩展视图解析器，支持更多类型的视图解析，例如：jsp、freemarker、pdf、excel等。
 
