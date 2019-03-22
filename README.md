@@ -24,4 +24,4 @@
 + [详解设计模式在 Spring 中的应用](https://github.com/hongjiaoliu/learning-record/blob/master/%E4%B8%BB%E6%B5%81%E6%A1%86%E6%9E%B6/Spring/Spring%E4%B8%AD%E7%94%A8%E5%88%B0%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.md)
 
 ### 3月22号
-+ [深入理解分布式事务]()
++ [深入理解分布式事务](https://github.com/hongjiaoliu/learning-record/blob/master/%E6%9E%B6%E6%9E%84/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1.md)
