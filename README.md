@@ -25,3 +25,6 @@
 
 ### 3月22号
 + [深入理解分布式事务](https://github.com/hongjiaoliu/learning-record/blob/master/%E6%9E%B6%E6%9E%84/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1.md)
+
+### 3月23号
++ [Redis 简介]()
