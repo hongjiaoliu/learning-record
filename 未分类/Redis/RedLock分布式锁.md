@@ -1,3 +1,6 @@
+
+> [转自：javGuide](https://github.com/hongjiaoliu/JavaGuide/blob/master/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/Redis/Redlock%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81.md)
+
 这篇文章主要是对 Redis 官方网站刊登的 [Distributed locks with Redis](https://redis.io/topics/distlock) 部分内容的总结和翻译。
 
 ## 什么是 RedLock
