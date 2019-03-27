@@ -34,3 +34,6 @@
 
 ### 3月26号
 + [了解分布式事务方案LCN](https://txlcn.org/zh-cn/docs/background.html)
+
+### 3月27号
++ 分布式事务方案LCN demo搭建
