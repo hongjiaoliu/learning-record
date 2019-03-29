@@ -1,6 +1,7 @@
 # learning-record - 学习轨迹记录
 
-
+### 3月29号
++ [面试官：给我说说你平时是如何优化MySQL的？](https://mp.weixin.qq.com/s/_abnnW7FzeQuNnA7NoRILg)
 
 ### 3月28号
 + [生产环境JVM内存溢出案例分析](https://mp.weixin.qq.com/s/_Ah3sjETKInRl25GcgswHg)
