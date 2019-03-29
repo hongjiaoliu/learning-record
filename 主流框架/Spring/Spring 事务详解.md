@@ -5,7 +5,7 @@
 
 > 事务的特性（ACID）：
 
-![](https://github.com/hongjiaoliu/learning-record/blob/master/pictures/1637b08b98619455.jpg?raw=true)
+![](image/1637b08b98619455.jpg?raw=true)
 
 1. **原子性（atomicity）**： 事务是最小的执行单位，不允许分割。事务的原子性确保动作要么全部完成，要么完全不起作用；
 2. **一致性（consistency）**： 执行事务前后，数据保持一致；
@@ -52,7 +52,7 @@ Public interface PlatformTransactionManager()...{
 
 我们刚刚也说了Spring中PlatformTransactionManager根据不同持久层框架所对应的接口实现类,几个比较常见的如下图所示
 
-![](https://github.com/hongjiaoliu/learning-record/blob/master/pictures/1637b21877cf626d.jpg?raw=true)
+![](image/1637b21877cf626d.jpg?raw=true)
 
 > JPA
 
@@ -89,7 +89,7 @@ JTA允许应用程序执行分布式事务处理——在两个或多个网络�
 
 事务属性可以理解成事务的一些基本配置，描述了事务策略如何应用到方法上。事务属性包含了5个方面。
 
-![](https://github.com/hongjiaoliu/learning-record/blob/master/pictures/1637b43a47916b2d.jpg?raw=true)
+![](image/1637b43a47916b2d.jpg?raw=true)
 
 ### TransactionDefinition接口中的方法如下：
 
@@ -219,7 +219,7 @@ public interface TransactionStatus{
     boolean isRollbackOnly();
     // 是否已完成
     boolean isCompleted;
-    
+
 }
 ```
 
