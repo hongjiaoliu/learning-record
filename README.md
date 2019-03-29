@@ -3,6 +3,8 @@
 ### 3月29号
 + [面试官：给我说说你平时是如何优化MySQL的？](https://mp.weixin.qq.com/s/_abnnW7FzeQuNnA7NoRILg)
 
++ [超全的 Linux 性能诊断分析工具](https://mp.weixin.qq.com/s/i_UWIVK6zBLhwHq5WbUIQQ)
+
 ### 3月28号
 + [生产环境JVM内存溢出案例分析](https://mp.weixin.qq.com/s/_Ah3sjETKInRl25GcgswHg)
 
