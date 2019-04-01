@@ -1,5 +1,10 @@
 # learning-record - 学习轨迹记录
 
+### 4月1号
++ MongoDB比较适合哪些业务场景？
+
+## 4月
+
 ### 3月29号
 + [面试官：给我说说你平时是如何优化MySQL的？](https://mp.weixin.qq.com/s/_abnnW7FzeQuNnA7NoRILg)
 
