@@ -1,8 +1,9 @@
 # learning-record - 学习轨迹记录
 
 ### 4月1号
-+ MongoDB比较适合哪些业务场景？
-+ 《Java并发编程的艺术》读书笔记
++ [MongoDB比较适合哪些业务场景？](https://github.com/hongjiaoliu/learning-record/blob/master/%E6%9C%AA%E5%88%86%E7%B1%BB/MongoDB/MongoDB%20%E6%AF%94%E8%BE%83%E9%80%82%E5%90%88%E5%93%AA%E4%BA%9B%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%EF%BC%9F.md)
++ [《Java并发编程的艺术》读书笔记](https://github.com/hongjiaoliu/learning-record/tree/master/Java%E9%AB%98%E9%98%B6/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/%E3%80%8AJava%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E7%9A%84%E8%89%BA%E6%9C%AF%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0)
++ [Tx-lcn spring cloud demo project](https://github.com/hongjiaoliu/xcloud-lcn-demo)
 
 ## 【四月】
 
@@ -21,10 +22,10 @@
 + [了解分布式事务方案LCN](https://txlcn.org/zh-cn/docs/background.html)
 
 ### 3月25号
-+ [redLock分布式锁]()
++ [RedLock分布式锁](https://github.com/hongjiaoliu/learning-record/blob/master/%E6%9C%AA%E5%88%86%E7%B1%BB/Redis/RedLock%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81.md)
 
 ### 3月23号
-+ [Redis 简介]()
++ [Redis 简介](https://github.com/hongjiaoliu/learning-record/blob/master/%E6%9C%AA%E5%88%86%E7%B1%BB/Redis/Redis%E7%AE%80%E4%BB%8B.md)
 
 ### 3月22号
 + [深入理解分布式事务](https://github.com/hongjiaoliu/learning-record/blob/master/%E6%9E%B6%E6%9E%84/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1.md)
