@@ -1,5 +1,8 @@
 # learning-record - 学习轨迹记录
 
+### 4月2号
++ 搭建 Tx-lcn spring cloud 1.5x demo project 
+
 ### 4月1号
 + [MongoDB比较适合哪些业务场景？](https://github.com/hongjiaoliu/learning-record/blob/master/%E6%9C%AA%E5%88%86%E7%B1%BB/MongoDB/MongoDB%20%E6%AF%94%E8%BE%83%E9%80%82%E5%90%88%E5%93%AA%E4%BA%9B%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%EF%BC%9F.md)
 + [《Java并发编程的艺术》读书笔记](https://github.com/hongjiaoliu/learning-record/tree/master/Java%E9%AB%98%E9%98%B6/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/%E3%80%8AJava%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E7%9A%84%E8%89%BA%E6%9C%AF%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0)
