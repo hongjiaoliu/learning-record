@@ -1,7 +1,10 @@
 # learning-record - 学习轨迹记录
 
+### 4月3号
++ [Nexus安装、使用说明、问题总结](https://www.cnblogs.com/bingyeh/p/5913486.html)
+
 ### 4月2号
-+ 搭建 Tx-lcn spring cloud 1.5x demo project 
++ 搭建 Tx-lcn spring cloud 1.5x demo project
 
 ### 4月1号
 + [MongoDB比较适合哪些业务场景？](https://github.com/hongjiaoliu/learning-record/blob/master/%E6%9C%AA%E5%88%86%E7%B1%BB/MongoDB/MongoDB%20%E6%AF%94%E8%BE%83%E9%80%82%E5%90%88%E5%93%AA%E4%BA%9B%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%EF%BC%9F.md)
