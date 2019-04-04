@@ -1,5 +1,8 @@
 # learning-record - 学习轨迹记录
 
+### 4月4号
++ spring boot 1.5升级到spring boot 2.x 研究
+
 ### 4月3号
 + [Nexus安装、使用说明、问题总结](https://www.cnblogs.com/bingyeh/p/5913486.html)
 
