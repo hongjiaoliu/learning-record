@@ -1,4 +1,9 @@
 # learning-record - 学习轨迹记录
+### 4月10号
++ spring boot 1.5升级到spring boot 2.x 研究
+
+### 4月8号
++ spring boot 1.5升级到spring boot 2.x 研究
 
 ### 4月4号
 + spring boot 1.5升级到spring boot 2.x 研究

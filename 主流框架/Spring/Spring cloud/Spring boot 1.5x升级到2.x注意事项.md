@@ -432,14 +432,107 @@ eureka:
 
 
 
-### 备注 1 
+### 改动1 ： eureka client 依赖
 
 
-```java
-import org.springframework.cloud.netflix.feign.FeignClient;
+```xml
+
+<dependency>
+	<groupId>org.springframework.cloud</groupId>
+	<artifactId>spring-cloud-starter-eureka</artifactId>
+</dependency>
+
 ```
 改为
 
-```java
-import org.springframework.cloud.openfeign.FeignClient;
+```xml
+
+<dependency>
+	<groupId>org.springframework.cloud</groupId>
+	<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+</dependency>
+
 ```
+
+### 改动2 ： Redis改动，redis默认实现类从原来的Jedis改为lettuce，yml中参数也需要修改
+
+```yml
+
+spring:
+  redis:
+    host: 10.**.**.104
+    port: 6379
+    password:*****
+    pool:
+      max-idle: 100 # pool settings ...
+      min-idle: 10
+      max-active: 50
+      max-wait: -1
+```
+
+改为
+
+```yml
+
+spring:
+  redis:
+    host: 10.**.**.104
+    port: 6379
+    password: *****
+    lettuce:
+      pool:
+        max-idle: 100 # pool settings ...
+        min-idle: 10
+        max-active: 50
+      max-wait: -1
+```
+
+### 改动3： eureka实例展示为ip:port的方式
+
+```yml
+eureka:
+  instance:
+    prefer-ip-address: true   #服务之间调用时，指定IP调用
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
+    lease-expiration-duration-in-seconds: 10
+    lease-renewal-interval-in-seconds: 5
+```
+
+改为
+
+```yml
+eureka:
+  instance:
+    prefer-ip-address: true   #服务之间调用时，指定IP调用
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    lease-expiration-duration-in-seconds: 10
+    lease-renewal-interval-in-seconds: 5
+```
+
+### 改动4：FeignClients依赖包修改
+
+```java
+import org.springframework.cloud.netflix.feign.EnableFeignClients;
+
+<dependency>
+	<groupId>org.springframework.cloud</groupId>
+	<artifactId>spring-cloud-starter-feign</artifactId>
+</dependency>
+
+```
+
+改为
+
+```java
+import org.springframework.cloud.openfeign.EnableFeignClients;
+
+<dependency>
+	<groupId>org.springframework.cloud</groupId>
+	<artifactId>spring-cloud-starter-openfeign</artifactId>
+</dependency>
+
+```
+
+### 遗留问题
+
++ springcloud支持传递MultipartFile类型
