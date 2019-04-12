@@ -12,3 +12,17 @@ LIMIT 100000, 10
 ### SQL诊断优化
 
 ![](image/sql-limit.jpg)
+
+
+### sql改写建议
+
+```sql
+SELECT `u`.`xuexinID`, `u`.`realName`, `u`.`mobile`, `u`.`createDate`, `u`.`enable`, `u`.`gender`
+FROM `xx_user` AS `u`
+INNER JOIN (SELECT `xuexinid`
+FROM `xx_user` AS `u`
+WHERE `u`.`deleteFlag` = 0
+ORDER BY `u`.`createDate` DESC
+LIMIT 100000,10) AS `tmp_0` USING (`xuexinid`)
+
+```

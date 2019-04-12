@@ -1,6 +1,6 @@
 # learning-record - 学习轨迹记录
 ### 4月12号
-+ [大数据量limit用法优化](大数据量limit用法优化)
++ [大数据量limit用法优化](https://github.com/hongjiaoliu/learning-record/blob/master/%E6%95%B0%E6%8D%AE%E5%BA%93/Mysql/%E5%A4%A7%E6%95%B0%E6%8D%AE%E9%87%8Flimit%E7%94%A8%E6%B3%95%E4%BC%98%E5%8C%96.md)
 
 ### 4月11号
 + spring boot 1.5升级到spring boot 2.x 研究
