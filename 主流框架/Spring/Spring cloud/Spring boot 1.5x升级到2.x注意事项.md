@@ -533,6 +533,86 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 
 ```
 
+### 改动5：SpringBoot2.0 自定义RequestMappingHandlerMapping和HandlerInterceptor问题
+
+SpringBoot升级到2.0以后配置文件继承的WebMvcConfigurerAdapter已废除，需要改为WebMvcConfigurationSupport，
+
+addInterceptors()方法覆写不变，但getRequestMappingHandlerMapping() 需要改为createRequestMappingHandlerMapping()
+
+自定义的RequestMappingHandlerMapping才能生效。
+
+```java
+package com.xuexin.xcloud.personal.conf;
+
+import feign.Feign;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.boot.autoconfigure.web.WebMvcRegistrations;
+import org.springframework.boot.autoconfigure.web.WebMvcRegistrationsAdapter;
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.AnnotationUtils;
+import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
+
+@Configuration
+@ConditionalOnClass({Feign.class})
+public class FeignMappingDefaultConfiguration {
+    @Bean
+    public WebMvcRegistrations feignWebRegistrations() {
+        return new WebMvcRegistrationsAdapter() {
+            @Override
+            public RequestMappingHandlerMapping getRequestMappingHandlerMapping() {
+                return new FeignFilterRequestMappingHandlerMapping();
+            }
+        };
+    }
+
+    private static class FeignFilterRequestMappingHandlerMapping extends RequestMappingHandlerMapping {
+        @Override
+        protected boolean isHandler(Class<?> beanType) {
+            return super.isHandler(beanType) && (AnnotationUtils.findAnnotation(beanType, FeignClient.class) == null);
+        }
+    }
+}
+
+```
+
+改为
+
+```java
+package com.xuexin.xcloud.personal.conf;
+
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.core.annotation.AnnotationUtils;
+import org.springframework.stereotype.Component;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
+import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
+
+@Component
+public class WebMvConfig extends WebMvcConfigurationSupport {
+
+	/**
+	 * 自定义RequestMappingHandlerMapping
+	 *  FeignMappingDefaultConfiguration
+	 * @return
+	 */
+	@Override
+	protected RequestMappingHandlerMapping createRequestMappingHandlerMapping() {
+		return new FeignFilterRequestMappingHandlerMapping();
+	}
+
+	private static class FeignFilterRequestMappingHandlerMapping extends RequestMappingHandlerMapping {
+		@Override
+		protected boolean isHandler(Class<?> beanType) {
+			return super.isHandler(beanType) && (AnnotationUtils.findAnnotation(beanType, FeignClient.class) == null);
+		}
+	}
+
+}
+
+```
+
+
 ### 遗留问题
 
 + springcloud支持传递MultipartFile类型

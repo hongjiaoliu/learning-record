@@ -1,4 +1,10 @@
 # learning-record - 学习轨迹记录
+### 4月12号
++ [大数据量limit用法优化](大数据量limit用法优化)
+
+### 4月11号
++ spring boot 1.5升级到spring boot 2.x 研究
+
 ### 4月10号
 + spring boot 1.5升级到spring boot 2.x 研究
 
