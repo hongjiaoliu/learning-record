@@ -11,7 +11,7 @@ LIMIT 100000, 10
 
 ### SQL诊断优化
 
-![](image/sql-limit.jpg)
+![](image/sql-limit.jpg.png)
 
 
 ### sql改写建议
