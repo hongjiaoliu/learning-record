@@ -1,4 +1,8 @@
 # learning-record - 学习轨迹记录
+
+### 4月17号
++ java 反射基础知识学习
+
 ### 4月16号
 + [Eureka client 无法顺序通过config-server获取配置的原因](https://github.com/hongjiaoliu/learning-record/blob/master/%E4%B8%BB%E6%B5%81%E6%A1%86%E6%9E%B6/Spring/Spring%20cloud/Eureka%20client%20%E6%97%A0%E6%B3%95%E9%A1%BA%E5%BA%8F%E9%80%9A%E8%BF%87config-server%E8%8E%B7%E5%8F%96%E9%85%8D%E7%BD%AE%E7%9A%84%E5%8E%9F%E5%9B%A0.md)
 
