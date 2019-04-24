@@ -2,6 +2,7 @@
 
 ### 4月24号
 + MySQL行锁、表锁、悲观锁、乐观锁的特点
++ 多线程、架构、异步消息、Redis等性能优
 
 ### 4月22号
 + MySQL 索引B+树原理，以及建索引的几大原则
@@ -19,16 +20,7 @@
 ### 4月12号
 + [大数据量limit用法优化](https://github.com/hongjiaoliu/learning-record/blob/master/%E6%95%B0%E6%8D%AE%E5%BA%93/Mysql/%E5%A4%A7%E6%95%B0%E6%8D%AE%E9%87%8Flimit%E7%94%A8%E6%B3%95%E4%BC%98%E5%8C%96.md)
 
-### 4月11号
-+ spring boot 1.5升级到spring boot 2.x 研究
-
-### 4月10号
-+ spring boot 1.5升级到spring boot 2.x 研究
-
-### 4月8号
-+ spring boot 1.5升级到spring boot 2.x 研究
-
-### 4月4号
+### 4月4到11号
 + spring boot 1.5升级到spring boot 2.x 研究
 
 ### 4月3号
