@@ -59,7 +59,7 @@ public class HelloWorld {
 ```
 为了理解 SLF4j 的工作原理，我翻了下它的官方文档，看到这么一张图：
 
-![](image/slf4j-view.jpg)
+![](image/concrete-bindings.png)
 
 简单解释一下，上图 SLF4J 有六种用法，一共五种角色，**Application** 不用说，就是我们的系统。
 
@@ -78,7 +78,7 @@ public class HelloWorld {
 
 我继续浏览了下官网，看见这么一张图：
 
-![](image/slf4j-legacy.jpg)
+![](image/legacy.png)
 
 由上图可以看出，让系统中所有的日志都统一到 SLF4J 的做法是：
 
