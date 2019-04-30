@@ -72,7 +72,7 @@ public class HelloWorld {
 
 因为 Log4J 出现得比较早，它根本不知道后面会有 SLF4J 这东西。Log4J 不能直接作为 SLF4J 的日志实现，所以中间就出现了适配层。第四种同理。
 
-这里提醒下，每一个日志的实现框架都有自己的配置文件。使用 SLF4J 以后，**配置文件还是做成日志实现框架自己本身的配置文件。比如，Logback 就使用 logback.xml、Log4J 就使用 Log4j.xml 文件。
+这里提醒下，每一个日志的实现框架都有自己的配置文件。使用 SLF4J 以后，配置文件还是做成日志实现框架自己本身的配置文件。比如，Logback 就使用 logback.xml、Log4j 就使用 Log4j.xml 文件。
 
 ## 如何让系统中所有的日志都统一到 SLF4J？
 
