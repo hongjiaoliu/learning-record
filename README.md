@@ -1,32 +1,32 @@
 # learning-record - 学习轨迹记录
 
 ### 5月5号
-+ Redis适用的业务场景
++ [Redis适用的业务场景](https://github.com/hongjiaoliu/learning-record/blob/master/%E6%9C%AA%E5%88%86%E7%B1%BB/Redis/Redis%E9%80%82%E5%90%88%E7%9A%84%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF.md)
 
 ## 【五月】
 
 ### 4月29号
-+ Java7、8 中的 HashMap 和 ConcurrentHashMap 全解析
++ [Java7、8 中的 HashMap 和 ConcurrentHashMap 全解析](https://github.com/hongjiaoliu/learning-record/blob/master/Java%E5%9F%BA%E7%A1%80/%E9%9B%86%E5%90%88/Java7%E3%80%818%20%E4%B8%AD%E7%9A%84%20HashMap%20%E5%92%8C%20ConcurrentHashMap%20%E5%85%A8%E8%A7%A3%E6%9E%90.md)
 
 ### 4月28号
-+ Spring Boot是如何实现日志的？
++ [Spring Boot是如何实现日志的？](https://github.com/hongjiaoliu/learning-record/blob/master/%E4%B8%BB%E6%B5%81%E6%A1%86%E6%9E%B6/Spring/Spring%20Boot%E6%98%AF%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E6%97%A5%E5%BF%97%E7%9A%84%EF%BC%9F.md)
 
 ### 4月26号
-+ linux 常用命令学习
++ [linux 常用命令学习](https://github.com/hongjiaoliu/learning-record/blob/master/%E6%9C%AA%E5%88%86%E7%B1%BB/linux/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%AD%A6%E4%B9%A0.md)
 
 ### 4月24号
-+ MySQL行锁、表锁、悲观锁、乐观锁的特点
-+ 多线程、架构、异步消息、Redis等性能优
++ [MySQL行锁、表锁、悲观锁、乐观锁的特点](https://github.com/hongjiaoliu/learning-record/blob/master/%E6%95%B0%E6%8D%AE%E5%BA%93/Mysql/MySQL%E8%A1%8C%E9%94%81%E3%80%81%E8%A1%A8%E9%94%81%E3%80%81%E6%82%B2%E8%A7%82%E9%94%81%E3%80%81%E4%B9%90%E8%A7%82%E9%94%81%E7%9A%84%E7%89%B9%E7%82%B9.md)
++ [多线程、架构、异步消息、Redis等性能优](https://github.com/hongjiaoliu/learning-record/blob/master/Java%E9%AB%98%E9%98%B6/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E3%80%81%E6%9E%B6%E6%9E%84%E3%80%81%E5%BC%82%E6%AD%A5%E6%B6%88%E6%81%AF%E3%80%81Redis%E7%AD%89%E6%80%A7%E8%83%BD%E4%BC%98.md)
 
 ### 4月22号
-+ MySQL 索引B+树原理，以及建索引的几大原则
++ [MySQL 索引B+树原理，以及建索引的几大原则](https://github.com/hongjiaoliu/learning-record/blob/master/%E6%95%B0%E6%8D%AE%E5%BA%93/Mysql/MySQL%20%E7%B4%A2%E5%BC%95B%2B%E6%A0%91%E5%8E%9F%E7%90%86%EF%BC%8C%E4%BB%A5%E5%8F%8A%E5%BB%BA%E7%B4%A2%E5%BC%95%E7%9A%84%E5%87%A0%E5%A4%A7%E5%8E%9F%E5%88%99.md)
 
 ### 4月19号
 
-+ 深入详解JVM 内存区域及内存溢出分析
++ [深入详解JVM 内存区域及内存溢出分析](https://github.com/hongjiaoliu/learning-record/blob/master/Java%E9%AB%98%E9%98%B6/JVM/%E6%B7%B1%E5%85%A5%E8%AF%A6%E8%A7%A3JVM%20%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F%E5%8F%8A%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA%E5%88%86%E6%9E%90.md)
 
 ### 4月17号
-+ java 反射基础知识学习
++ [java 反射基础知识学习](https://github.com/hongjiaoliu/learning-record/blob/master/Java%E5%9F%BA%E7%A1%80/%E5%8F%8D%E5%B0%84.md)
 
 ### 4月16号
 + [Eureka client 无法顺序通过config-server获取配置的原因](https://github.com/hongjiaoliu/learning-record/blob/master/%E4%B8%BB%E6%B5%81%E6%A1%86%E6%9E%B6/Spring/Spring%20cloud/Eureka%20client%20%E6%97%A0%E6%B3%95%E9%A1%BA%E5%BA%8F%E9%80%9A%E8%BF%87config-server%E8%8E%B7%E5%8F%96%E9%85%8D%E7%BD%AE%E7%9A%84%E5%8E%9F%E5%9B%A0.md)
