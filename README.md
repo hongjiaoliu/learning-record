@@ -1,5 +1,10 @@
 # learning-record - 学习轨迹记录
 
+### 5月5号
++ Redis适用的业务场景
+
+## 【五月】
+
 ### 4月29号
 + Java7、8 中的 HashMap 和 ConcurrentHashMap 全解析
 
