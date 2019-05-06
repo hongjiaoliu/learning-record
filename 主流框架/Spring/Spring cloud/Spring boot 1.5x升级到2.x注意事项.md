@@ -611,6 +611,19 @@ public class WebMvConfig extends WebMvcConfigurationSupport {
 }
 
 ```
+### 改动6
+升级到 Spring Boot 2.x 之后发现 Spring Boot 的 Maven 启动插件不好用了，主要是 Profile 不能自由切换。
+
+升级前：
+
+```
+spring-boot:run -Drun.profiles=profile1
+```
+升级后：
+
+```
+spring-boot:run -Dspring-boot.run.profiles=profile1
+```
 
 
 ### 遗留问题
