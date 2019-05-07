@@ -1,8 +1,9 @@
 # learning-record - 学习轨迹记录
+### 5月7号
++ [面试题集锦-集合篇]()
 
 ### 5月6号
-+ [面试题集锦-基础篇]()
-
++ [面试题集锦-基础篇](https://github.com/hongjiaoliu/learning-record/blob/master/%E8%AF%95%E9%A2%98%E9%9B%86%E9%94%A6/%E5%9F%BA%E7%A1%80%E7%AF%87.md)
 
 ### 5月5号
 + [Redis适用的业务场景](https://github.com/hongjiaoliu/learning-record/blob/master/%E6%9C%AA%E5%88%86%E7%B1%BB/Redis/Redis%E9%80%82%E5%90%88%E7%9A%84%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF.md)
