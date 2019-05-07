@@ -1,6 +1,8 @@
 # learning-record - 学习轨迹记录
 ### 5月7号
 + [面试题集锦-集合篇](https://github.com/hongjiaoliu/learning-record/blob/master/%E8%AF%95%E9%A2%98%E9%9B%86%E9%94%A6/%E9%9B%86%E5%90%88%E7%AF%87.md)
++ [面试题集锦-线程篇]()
++ [面试题集锦-锁机制篇]()
 
 ### 5月6号
 + [面试题集锦-基础篇](https://github.com/hongjiaoliu/learning-record/blob/master/%E8%AF%95%E9%A2%98%E9%9B%86%E9%94%A6/%E5%9F%BA%E7%A1%80%E7%AF%87.md)
