@@ -1,7 +1,7 @@
 # learning-record - 学习轨迹记录
 
 ### 5月13号
-+ [Mysql建立、删除索引及使用](数据库/Mysql/Mysql建立、删除索引及使用.md)
++ [Mysql建立、删除索引及使用](数据库/Mysql/Mysql建立、删除索引以及建索引的几大原则.md.md)
 
 ### 5月7号
 + [面试题集锦-集合篇](试题集锦/集合篇.md)
@@ -31,7 +31,7 @@
 + [多线程、架构、异步消息、Redis等性能优](https://github.com/hongjiaoliu/learning-record/blob/master/Java%E9%AB%98%E9%98%B6/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E3%80%81%E6%9E%B6%E6%9E%84%E3%80%81%E5%BC%82%E6%AD%A5%E6%B6%88%E6%81%AF%E3%80%81Redis%E7%AD%89%E6%80%A7%E8%83%BD%E4%BC%98.md)
 
 ### 4月22号
-+ [MySQL 索引B+树原理，以及建索引的几大原则](https://github.com/hongjiaoliu/learning-record/blob/master/%E6%95%B0%E6%8D%AE%E5%BA%93/Mysql/MySQL%20%E7%B4%A2%E5%BC%95B%2B%E6%A0%91%E5%8E%9F%E7%90%86%EF%BC%8C%E4%BB%A5%E5%8F%8A%E5%BB%BA%E7%B4%A2%E5%BC%95%E7%9A%84%E5%87%A0%E5%A4%A7%E5%8E%9F%E5%88%99.md)
++ [MySQL 索引B+树原理，以及建索引的几大原则](数据库/Mysql/MySQL 索引B+树原理.md)
 
 ### 4月19号
 
