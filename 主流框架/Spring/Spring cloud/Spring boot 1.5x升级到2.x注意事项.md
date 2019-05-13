@@ -629,3 +629,14 @@ spring-boot:run -Dspring-boot.run.profiles=profile1
 ### 遗留问题
 
 + springcloud支持传递MultipartFile类型
+
++ com.xuexin.xcloud.school.conf.RedisConfig
+
++ 跨域问题
+
++  Request processing failed; nested exception is java.lang.IllegalArgumentException: 'Content-Type' cannot contain wildcard type '*'
+  fastjson 1.4.27 版本
+  > [解决方案](https://blog.csdn.net/u011686226/article/details/78054950)
+
+  https://www.cnblogs.com/xiaopotian/p/8654993.html
+  
