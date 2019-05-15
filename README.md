@@ -1,5 +1,8 @@
 # learning-record - 学习轨迹记录
 
+### 5月15号
++ [一份最详细的 IDEA调试教程，让bug无处藏身](https://mp.weixin.qq.com/s/pN7K7t_yKQlpaAv0vtMPcA)
+
 ### 5月13号
 + [Mysql建立、删除索引及使用](数据库/Mysql/Mysql建立、删除索引以及建索引的几大原则.md)
 
