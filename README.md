@@ -1,5 +1,8 @@
 # learning-record - 学习轨迹记录
 
+### 5月16号
++ [Java 8 新特性最佳指南](java基础/Java 8 新特性最佳指南.md)
+
 ### 5月15号
 + [一份最详细的 IDEA调试教程，让bug无处藏身](https://mp.weixin.qq.com/s/pN7K7t_yKQlpaAv0vtMPcA)
 
