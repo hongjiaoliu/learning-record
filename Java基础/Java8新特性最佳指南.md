@@ -192,7 +192,7 @@ Person person = personFactory.create("Peter","Parker");
 
 #### <a name="5">Lamda 表达式作用域(Lambda Scopes)</a>
 
-**<a href="5.1">访问局部变量</a>**
+**<a name="5.1">访问局部变量</a>**
 
 我们可以直接在 lambda 表达式中访问外部的局部变量：
 
