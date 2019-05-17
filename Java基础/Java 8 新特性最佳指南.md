@@ -539,6 +539,437 @@ java.util.Stream 表示能应用在一组元素上一次执行的操作序列。
 List<String> stringCollection = new ArrayList<>();
 stringCollection.add("ddd2");
 stringCollection.add("aaa2");
+stringCollection.add("bbb1");
+stringCollection.add("aaa1");
+stringCollection.add("bbb3");
+stringCollection.add("ccc");
 stringCollection.add("bbb2");
+stringCollection.add("ddd1");
 ```
 Java 8扩展了集合类，可以通过 Collection.stream() 或者 Collection.parallelStream() 来创建一个Stream。下面几节将详细解释常用的Stream操作：
+
+**Filter(过滤)**
+
+过滤通过一个predicate接口来过滤并只保留符合条件的元素，该操作属于中间操作，所以我们可以在过滤后的结果来应用其他Stream操作（比如forEach）。forEach需要一个函数来对过滤后的元素依次执行。forEach是一个最终操作，所以我们不能在forEach之后来执行其他Stream操作。
+```java
+stringList.stream()
+          .filter((s)->s.startsWith("a"))
+          .forEach(System.out::println); // "aaa2" "aaa1"
+```
+forEach 是为 Lambda 而设计的，保持了最紧凑的风格。而且 Lambda 表达式本身是可以重用的，非常方便。
+
+**Sorted(排序)**
+排序是一个 中间操作，返回的是排序好后的 Stream。如果你不指定一个自定义的 Comparator 则会使用默认排序。
+```java
+stringList
+  .stream()
+  .sorted()
+  .filter((s)->s.startsWith("a"))
+  .forEach(System.out::println); // "aaa1" "aaa2"
+```
+需要注意的是，排序只创建了一个排列好后的Stream，而不会影响原有的数据源，排序之后原数据stringCollection是不会被修改的：
+```java
+System.out.println(stringList); // ddd2, aaa2, bbb1, aaa1, bbb3, ccc, bbb2, ddd1
+```
+
+**Map(映射)**
+中间操作 map 会将元素根据指定的 Function 接口来依次将元素转成另外的对象。
+
+下面的示例展示了将字符串转换为大写字符串。你也可以通过map来讲对象转换成其他类型，map返回的Stream类型是根据你map传递进去的函数的返回值决定的。
+
+```java
+ stringList
+  .stream()
+  .map(String::toUpperCase)
+  .sorted((a,b) -> b.compareTo(a))
+  .forEach(System.out::println); // "DDD2", "DDD1", "CCC", "BBB3", "BBB2", "AAA2", "AAA1"
+```
+
+**Match(匹配)**
+Stream提供了多种匹配操作，允许检测指定的Predicate是否匹配整个Stream。所有的匹配操作都是 最终操作 ，并返回一个 boolean 类型的值。
+
+```java
+
+  boolean anyStartsWithA =  stringList
+                                    .stream()
+                                    .anyMatch((s) -> s.startsWith("a"));
+  System.out.println(anyStartsWithA); // true
+
+  boolean allStartsWithA = stringList
+                                    .stream()
+                                    .allMatch((s) -> s.startsWith("a"));
+  System.out.println(allStartsWithA); // false
+
+  boolean noneStartsWithZ = stringList
+                                    .stream()
+                                    .noneMatch((s) -> s.startsWith("z"));
+  System.out.println(noneStartsWithZ); // true                                   
+
+```
+**Count(计数)**
+
+计数是一个 最终操作，返回Stream中元素的个数，返回值类型是 long。
+
+```java
+  long startsWithB = stringList
+                              .stream()
+                              .filter((s) -> s.startsWith("b"))
+                              .count();
+  System.out.println(startsWithB); // 3
+```
+
+**Reduce(规约)**
+这是一个 最终操作 ，允许通过指定的函数来讲stream中的多个元素规约为一个元素，规约后的结果是通过Optional 接口表示的：
+
+```java
+
+  Optional<String> reduced = stringList
+                                      .stream()
+                                      .sorted()
+                                      .reduce((s1,s2) -> s1 + "#" + s2);
+  reduced.ifPresent(System.out::println); // aaa1#aaa2#bbb1#bbb2#bbb3#ccc#ddd1#ddd2
+```
+
+译者注： 这个方法的主要作用是把 Stream 元素组合起来。它提供一个起始值（种子），然后依照运算规则（BinaryOperator），和前面 Stream 的第一个、第二个、第 n 个元素组合。从这个意义上说，字符串拼接、数值的 sum、min、max、average 都是特殊的 reduce。例如 Stream 的 sum 就相当于 Integersum=integers.reduce(0,(a,b)->a+b);也有没有起始值的情况，这时会把 Stream 的前面两个元素组合起来，返回的是 Optional。
+
+```java
+// 字符串连接，concat = "ABCD"
+ String concat = Stream.of("A","B","C","D").reduce("",String::concat);
+// 求最小值，minValue= -3.0
+double minValue = Stream.of(-1.5,1.0,-3.0,-2.0).reduce(Double.MAX_VALUE,DOUBEL::min);
+// 求和，sumValue= 10,有起始值
+int sumValue = Stream.of(1,2,3,4).reduce(0,Integer::sum);
+// 求和，sumValue = 10 ,无起始值
+sumValue = Stream.of(1,2,3,4).reduce(Integer::sum).get();
+// 过滤，字符串连接，concat = "ace"
+concat = Stream.of("a","B","c","D","e","F")
+              .filter(x -> x.compareTo("Z") > 0)
+              .reduce("",String::concat);
+
+````
+
+
+上面代码例如第一个示例的 reduce()，第一个参数（空白字符）即为起始值，第二个参数（String::concat）为 BinaryOperator。这类有起始值的 reduce() 都返回具体的对象。而对于第四个示例没有起始值的 reduce()，由于可能没有足够的元素，返回的是 Optional，请留意这个区别。更多内容查看： IBM：Java 8 中的 Streams API 详解
+
+
+**Parallel Streams(并行流)**
+
+前面提到过Stream有串行和并行两种，串行Stream上的操作是在一个线程中依次完成，而并行Stream则是在多个线程上同时执行。
+
+下面的例子展示了是如何通过并行Stream来提升性能：
+
+首先我们创建一个没有重复元素的大表：
+
+```java
+int max = 1000000;
+List<String> values = new ArrrayList<>(max);
+for(int i=0; i < max ; i++){
+  UUID uuid = UUID.randomUUID();
+  values.add(uuid.toString());
+}
+```
+
+我们分别用串行和并行两种方式对其进行排序，最后看看所用时间的对比。
+
+**Sequential Sort(串行排序)**
+
+```java
+// 串行排序
+long t0 = System.nanoTime();
+long count = values.stream().sorted().count();
+System.out.println(count);
+
+long t1 = System.nanoTime();
+
+long millis = TimeUnit.NANOSECONDS.toMillis(t1,t0);
+System.out.println(String.format("Sequential sort took : %d ms", millis));
+
+
+```
+
+**Sequential Sort(串行排序)**
+
+```Java
+long t0 = System.nanoTime();
+long count = values.parallelStream().sorted().count();
+System.out.println(count); // 1000000
+
+long t1 = System.nanoTime();
+
+long millis = TimeUnit.NANOSECONDS.toMillis(t1 - t0);
+System.out.println(String.format("parallel sort took : %d ms ",millis));// parallel sort took :475 ms
+
+
+```
+上面两个代码几乎是一样的，但是并行版的快了 50% 左右，唯一需要做的改动就是将 stream() 改为 parallelStream()。
+
+**Maps**
+
+前面提到过，Map 类型不支持 streams，不过Map提供了一些新的有用的方法来处理一些日常任务。Map接口本身没有可用的 stream（）方法，但是你可以在键，值上创建专门的流或者通过 map.keySet().stream(), map.values().stream()和 map.entrySet().stream()。
+
+此外,Maps 支持各种新的和有用的方法来执行常见任务。
+
+```java
+Map<Integer,String> map = new HashMap<>();
+for(int i = 0; i < 10; i++){
+  map.putIfAbsent(i,"val" + i);
+}
+
+map.forEach((id,val) -> System.out.println(val)); //val0 val1 val2 val3 val4 val5 val6 val7 val8 val9
+
+```
+
+putIfAbsent 阻止我们在null检查时写入额外的代码; forEach接受一个 consumer 来对 map 中的每个元素操作。
+
+此示例显示如何使用函数在 map 上计算代码：
+
+```java
+map.computeIfPresent(3,(num,val) -> val + num);
+map.get(3); // val33
+
+map.computeIfPresent(9, (num,val) -> null);
+map.containsKey(9);  // false
+
+map.computeIfPresent(23, num->"val" + num);
+map.containsKey(23);  // true
+
+map.computeIfPresent(3, num -> "bam");
+map.get(3); // val33
+
+```
+
+接下来展示如何在Map里删除一个键值全都匹配的项：
+
+```java
+  map.remove(3,"val33");
+  map.get(3);
+  map.remove(3,"val33");
+  map.get(3);
+```
+
+另外一个有用的方法：
+
+```java
+map.getOrDefault(42,"not found");
+```
+
+对Map的元素做合并也变得很容易了：
+
+```java
+  map.merge(9,"val9",(value,newValue) -> value.concat(newValue));
+  map.get(9);
+
+  map.merge(9,"concat",(value,newValue) -> value.concat(newValue));
+  map.get(9);
+
+```
+
+Merge 做的事情是如果键名不存在则插入，否则则对原键对应的值做合并操作并重新插入到map中。
+
+
+**Data API(日期相关API)**
+
+Java 8在 java.time 包下包含一个全新的日期和时间API。新的Date API与Joda-Time库相似，但它们不一样。以下示例涵盖了此新 API 的最重要部分。译者对这部分内容参考相关书籍做了大部分修改。
+
+
+译者注(总结)：
+
++ Clock 类提供了访问当前日期和时间的方法，Clock 是时区敏感的，可以用来取代 System.currentTimeMillis() 来获取当前的微秒数。某一个特定的时间点也可以使用 Instant 类来表示， Instant 类也可以用来创建旧版本的 java.util.Date 对象。
+
++ 在新API中时区使用 ZoneId 来表示。时区可以很方便的使用静态方法of来获取到。 抽象类 ZoneId（在 java.time包中）表示一个区域标识符。 它有一个名为 getAvailableZoneIds的静态方法，它返回所有区域标识符。
+
++ jdk1.8中新增了 LocalDate 与 LocalDateTime等类来解决日期处理方法，同时引入了一个新的类DateTimeFormatter 来解决日期格式化问题。可以使用Instant代替 Date，LocalDateTime代替 Calendar，DateTimeFormatter 代替 SimpleDateFormat。
+
+
+**Clock**
+
+Clock 类提供了访问当前日期和时间的方法，Clock 是时区敏感的，可以用来取代 System.currentTimeMillis() 来获取当前的微秒数。某一个特定的时间点也可以使用 Instant类来表示， Instant 类也可以用来创建旧版本的 java.util.Date 对象。
+
+
+```java
+Clock clock = Clock.systemDefaultZone();
+long millis = clock.millis();
+System.out.println(millis); // 1552379579043
+Instant instant = clock.instant();
+System.out.println(instant);
+Date legacyDate = Date.from(instant);
+System.out.println(legacyDate);
+
+```
+
+**Timezones(时区)**
+
+在新API中时区使用 ZoneId 来表示。时区可以很方便的使用静态方法of来获取到。 抽象类 ZoneId（在 java.time包中）表示一个区域标识符。 它有一个名为 getAvailableZoneIds的静态方法，它返回所有区域标识符。
+
+```java
+//输出所有区域标识符
+System.out.println(ZoneId.getAvailableZoneIds());
+
+ZoneId zone1 = ZoneId.of("Europe/Berlin");
+ZoneId zone2 = ZoneId.of("Brazil/East");
+System.out.println(zone1.getRules());// ZoneRules[currentStandardOffset=+01:00]
+System.out.println(zone2.getRules());// ZoneRules[currentStandardOffset=-03:00]
+
+```
+
+**LocalTime(本地时间)**
+LocalTime 定义了一个没有时区信息的时间，例如 晚上10点或者 17:30:15。下面的例子使用前面代码创建的时区创建了两个本地时间。之后比较时间并以小时和分钟为单位计算两个时间的时间差：
+
+```java
+LocalTime now1 = LocalTime.now(zone1);
+LocalTime now2 = LocalTime.now(zone2);
+System.out.println(now1.isBefore(now2)); // false
+
+long hoursBetween = ChronoUnit.HOURS.betweent(now1,now2);
+long minutesBetweent = ChronoUnit.MINUTES.betweent(now1,now2);
+
+System.out.println(hoursBetween);
+System.out.println(minutesBetweent);
+
+```
+LocalTime 提供了多种工厂方法来简化对象的创建，包括解析时间字符串.
+
+```java
+LocalTime late = LocalTime.of(23,59,59);
+System.out.println(late); // 23:59:59
+DateTimeFormatter germanFormatter = DateTimeFormatter
+                                                  .ofLocalizedTime(FormatStyle.SHORT)
+                                                  .withLocale(Locale.GERMAN);
+LocalTime leetTime = LocalTime.parse("13:37",germanFormatter);
+System.out.println(leetTime); // 13:37
+
+```
+
+**LocalDate(本地日期)**
+
+LocalDate 表示了一个确切的日期，比如 2014-03-11。该对象值是不可变的，用起来和LocalTime基本一致。下面的例子展示了如何给Date对象加减天/月/年。另外要注意的是这些对象是不可变的，操作返回的总是一个新实例。
+
+```java
+
+LocalDate today = LocalDate.now();// 获取现在的日期
+System.out.println("今天的日期："+today);//2019-03-12
+LocalDate tomorrow = today.plus(1,ChronoUnit.DAYS);
+System.out.println("明天的日期："+tomorrow);//2019-03-13
+LocalDate yesterday = tomorrow.minusDays(2);
+System.out.println("昨天的日期："+yesterday);//2019-03-11
+LocalDate independenceDay = LocalDate.of(2019,Month.MARCH，12);
+DateOfWeek dayofWeek = independenceDay.getDayOfWeek();
+System.out.println("今天是周几："+ dayofWeek);//TUESDAY
+
+```
+
+从字符串解析一个 LocalDate 类型和解析 LocalTime 一样简单,下面是使用DateTimeFormatter 解析字符串的例子：
+
+```java
+String str1 = "2014==04==12 01时06分09秒";
+//根据需要解析的日期、时间字符串定义解析所用的格式器
+DateTimeFormatter fomatter1 = DateTimeFormatter.ofPattern("yyyy==MM==dd HH时mm分ss秒");
+LocalDateTime dt1 = LocalDateTime.parse(str1,fomatter1);
+System.out.println(dt1); //输出 2014-04-12T01:06:09
+String str2 = "2014$$$MMM$$$dd HH小时";
+LocalDateTime dt2 = LocalDateTime.parse(str2,fomatter2);
+System.out.println(dt2); //输出 2014-04-13T20:00
+```
+再来看一个使用 DateTimeFormatter 格式化日期的示例
+
+```java
+LocalDateTime rightNow = LocalDateTime.now();
+String date = DateTimeFormatter.ISO_LOCAL_DATE_TIME.format(rightNow);
+System.out.println(date);
+DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YYYY-MM-dd HH:mm:ss");
+System.out.println(formatter.format(rightNow);//2019-03-12 16:26:48
+```
+**LocalDateTime(本地日期时间)**
+
+LocalDateTime 同时表示了时间和日期，相当于前两节内容合并到一个对象上了。LocalDateTime 和 LocalTime还有 LocalDate 一样，都是不可变的。LocalDateTime 提供了一些能访问具体字段的方法。
+
+```java
+LocalDateTime sylvester = LocalDateTime.of(2014,Moth.DECUMBER,31,23,59,59);
+DayOfWeek dayOfWeek = sylvester.getDayOfWeek();
+System.out.println(dayOfWeek); // WEDESDAY
+
+Month month = sylvester.getMonth();
+System.out.println(month); // DECUMBER
+
+long minuteOfDay = sylvester.getLong(ChronoField.MINUTE_OF_DAY):
+System.out.println(minuteOfDay); // 1439
+
+```
+
+只要附加上时区信息，就可以将其转换为一个时间点Instant对象，Instant时间点对象可以很容易的转换为老式的 java.util.Date。
+
+```java
+Instant instant = sylvester
+                        .atZone(ZoneId.systemDefault())
+                        .toInstant();
+Date legacyDate = Date.from(instant);
+System.out.println(legacyDate);
+```
+格式化LocalDateTime和格式化时间和日期一样的，除了使用预定义好的格式外，我们也可以自己定义格式：
+
+```java
+DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd, yyyy - HH:mm");
+LocalDateTime parsed = localDateTime.parse("Nov 03,2014 - 07:13",formatter);
+String string = formatter.format(parsed);
+System.out.println(String); // Nov 03,2014 - 07:13
+```
+
+和java.text.NumberFormat不一样的是新版的DateTimeFormatter是不可变的，所以它是线程安全的。
+关于时间日期格式的详细信息在这里。
+
+**Annotations(注解)**
+
+在Java 8中支持多重注解了，先看个例子来理解一下是什么意思。
+首先定义一个包装类Hints注解用来放置一组具体的Hint注解：
+
+```Java
+@interface Hints {
+  Hint[] value();
+}
+
+@Repeatable(Hint.class)
+@Interface Hint{
+  String value();
+}
+```
+Java 8允许我们把同一个类型的注解使用多次，只需要给该注解标注一下 @Repeatable即可。
+
+例 1: 使用包装类当容器来存多个注解（老方法）
+
+```java
+@Hints({@Hint("hint1"),@Hint("hit2")})
+class Person{}
+```
+
+例 2：使用多重注解（新方法）
+
+```java
+
+@Hint("hint1")
+@Hint("hint2")
+class Person{}
+````
+
+第二个例子里java编译器会隐性的帮你定义好@Hints注解，了解这一点有助于你用反射来获取这些信息：
+
+```java
+Hint hint = Person.class.getAnnotation(Hint.class);
+System.out.println(hint);  // null  
+
+Hints hints1 = Person.class.getAnnotation(Hints.class);
+System.out.println(hints1.value().length); // 2
+
+Hint[] hints2 = Person.class.getAnnotationsByType(Hint.class);
+System.out.println(hints2.length); // 2
+````
+即便我们没有在 Person类上定义 @Hints注解，我们还是可以通过 getAnnotation(Hints.class)来获取 @Hints注解，更加方便的方法是使用 getAnnotationsByType 可以直接获取到所有的 @Hint注解。
+另外Java 8的注解还增加到两种新的target上了：
+
+
+```java
+@Target({ElementType.TYPE_PARAMETER,ElementType.TYPE_USE})
+@interface MyAnnotation{}
+```
+**Whete to go from here?**
+
+关于Java 8的新特性就写到这了，肯定还有更多的特性等待发掘。JDK 1.8里还有很多很有用的东西，比如 Arrays.parallelSort, StampedLock和 CompletableFuture等等。
