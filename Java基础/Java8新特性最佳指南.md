@@ -2,40 +2,40 @@
 >[原创： SnailClimb  JavaGuide](https://mp.weixin.qq.com/s/5m55MSUUjR04DDqfGg8oBQ)
 ### 目录：
 
-+ <a herf="#1">接口的默认方法(Default Methods for Interfaces)</a>
-+ <a herf="#2">Lambda表达式(Lambda expressions)</a>
-+ <a herf="#3">函数式接口(Functional Interfaces)</a>
-+ <a herf="#4">方法和构造函数引用(Method and Constructor References)</a>
-+ <a herf="#5">Lamda 表达式作用域(Lambda Scopes)</a>
-  + <a herf="#5.1">访问局部变量</a>
-  + <a herf="#5.2">访问字段和静态变量</a>
-  + <a herf="#5.3">访问默认接口方法</a>
-+ <a herf="#6">内置函数式接口(Built-in Functional Interfaces)</a>
-  + <a herf="#6.1">Predicates</a>
-  + <a herf="#6.2">Functions</a>
-  + <a herf="#6.3">Suppliers</a>
-  + <a herf="#6.4">Consumers</a>
-  + <a herf="#6.5">Comparators</a>
-+ <a herf="#7">Optionals</a>
-+ <a herf="#8">Streams(流)</a>
-  + <a herf="#8.1">Filter(过滤)</a>
-  + <a herf="#8.2">Sorted(排序)</a>
-  + <a herf="#8.3">Map(映射)</a>
-  + <a herf="#8.4">Match(匹配)</a>
-  + <a herf="#8.5">Count(计数)</a>
-  + <a herf="#8.6">Reduce(规约)</a>
-+ <a herf="#9">Parallel Streams(并行流)</a>
-  + <a herf="#9.1">Sequential Sort(串行排序)</a>
-  + <a herf="#9.2">Parallel Sort(并行排序)</a>
-+ <a herf="#10">Maps</a>
-+ <a herf="#11">Data API(日期相关API)</a>
-  + <a herf="#11.1">Clock</a>
-  + <a herf="#11.2">Timezones(时区)</a>
-  + <a herf="#11.3">LocalTime(本地时间)</a></a>
-  + <a herf="#11.4">LocalDate(本地日期)</a>
-  + <a herf="#11.5">LocalDateTime(本地日期时间)</a>
-+ <a herf="#12">Annotations(注解)</a>
-+ <a herf="#13">Whete to go from here?</a>
++ <a href="#1">接口的默认方法(Default Methods for Interfaces)</a>
++ <a href="#2">Lambda表达式(Lambda expressions)</a>
++ <a href="#3">函数式接口(Functional Interfaces)</a>
++ <a href="#4">方法和构造函数引用(Method and Constructor References)</a>
++ <a href="#5">Lamda 表达式作用域(Lambda Scopes)</a>
+  + <a href="#5.1">访问局部变量</a>
+  + <a href="#5.2">访问字段和静态变量</a>
+  + <a href="#5.3">访问默认接口方法</a>
++ <a href="#6">内置函数式接口(Built-in Functional Interfaces)</a>
+  + <a href="#6.1">Predicates</a>
+  + <a href="#6.2">Functions</a>
+  + <a href="#6.3">Suppliers</a>
+  + <a href="#6.4">Consumers</a>
+  + <a href="#6.5">Comparators</a>
++ <a href="#7">Optionals</a>
++ <a href="#8">Streams(流)</a>
+  + <a href="#8.1">Filter(过滤)</a>
+  + <a href="#8.2">Sorted(排序)</a>
+  + <a href="#8.3">Map(映射)</a>
+  + <a href="#8.4">Match(匹配)</a>
+  + <a href="#8.5">Count(计数)</a>
+  + <a href="#8.6">Reduce(规约)</a>
++ <a href="#9">Parallel Streams(并行流)</a>
+  + <a href="#9.1">Sequential Sort(串行排序)</a>
+  + <a href="#9.2">Parallel Sort(并行排序)</a>
++ <a href="#10">Maps</a>
++ <a href="#11">Data API(日期相关API)</a>
+  + <a href="#11.1">Clock</a>
+  + <a href="#11.2">Timezones(时区)</a>
+  + <a href="#11.3">LocalTime(本地时间)</a></a>
+  + <a href="#11.4">LocalDate(本地日期)</a>
+  + <a href="#11.5">LocalDateTime(本地日期时间)</a>
++ <a href="#12">Annotations(注解)</a>
++ <a href="#13">Whete to go from here?</a>
 
 ### Java 8 Tutorial
 
@@ -192,7 +192,7 @@ Person person = personFactory.create("Peter","Parker");
 
 #### <a name="5">Lamda 表达式作用域(Lambda Scopes)</a>
 
-**<a herf="5.1">访问局部变量</a>**
+**<a href="5.1">访问局部变量</a>**
 
 我们可以直接在 lambda 表达式中访问外部的局部变量：
 
