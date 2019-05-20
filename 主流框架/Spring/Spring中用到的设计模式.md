@@ -4,7 +4,7 @@
 
 spring中常用的设计模式达到九种，我们一一举例：
 
-**第一种：简单工厂**
+**第一种：简单工厂模式**
 
 又叫做静态工厂方法（StaticFactory Method）模式，但不属于23种GOF设计模式之一。
 简单工厂模式的实质是由一个工厂类根据传入的参数，动态决定应该创建哪一个产品类。
@@ -28,7 +28,7 @@ spring中的BeanFactory就是简单工厂模式的体现，根据传入一个唯
 </beans>
 ```
 
-**第二种：工厂方法（Factory Method）**
+**第二种：工厂方法模式（Factory Method）**
 
 
 通常由应用程序直接使用new创建新的对象，为了将对象的创建和使用相分离，采用工厂模式,即应用程序将对象的创建及初始化职责交给工厂对象。
@@ -74,7 +74,7 @@ spring中的单例模式完成了后半句话，即提供了全局的访问点Be
 
 **第四种：适配器（Adapter）**
 
-在Spring的Aop中，使用的Advice（通知）来增强被代理类的功能。Spring实现这一AOP功能的原理就使用代理模式（1、JDK动态代理。2、CGLib字节码生成技术代理。）对类进行方法级别的切面增强，即，生成被代理类的代理类， 并在代理类的方法前，设置拦截器，通过执行拦截器重的内容增强了代理方法的功能，实现的面向切面编程。
+在Spring的Aop中，使用的Advice（通知）来增强被代理类的功能。Spring实现这一AOP功能的原理就使用代理模式（1、JDK动态代理。2、CGLib字节码生成技术代理。）对类进行方法级别的切面增强，即，生成被代理类的代理类， 并在代理类的方法前，设置拦截器，通过执行拦截器中的内容增强了代理方法的功能，实现的面向切面编程。
 
 Adapter类接口：Target
 
@@ -103,7 +103,7 @@ class MethodBeforeAdviceAdapter implements AdvisorAdapter, Serializable {
 
 }
 ```
-**第五种：包装器（Decorator）**
+**第五种：包装器（Decorator），即装饰模式**
 
 在我们的项目中遇到这样一个问题：我们的项目需要连接多个数据库，而且不同的客户在每次访问中根据需要会去访问不同的数据库。我们以往在spring和hibernate框架中总是配置一个数据源，因而sessionFactory的dataSource属性总是指向这个数据源并且恒定不变，所有DAO在使用sessionFactory的时候都是通过这个数据源访问数据库。但是现在，由于项目的需要，我们的DAO在访问sessionFactory的时候都不得不在多个数据源中不断切换，问题就出现了：如何让sessionFactory在执行数据持久化的时候，根据客户的需求能够动态切换不同的数据源？我们能不能在spring的框架下通过少量修改得到解决？是否有什么设计模式可以利用呢？
 
@@ -112,7 +112,7 @@ class MethodBeforeAdviceAdapter implements AdvisorAdapter, Serializable {
 spring中用到的包装器模式在类名上有两种表现：一种是类名中含有Wrapper，另一种是类名中含有Decorator。基本上都是动态地给一个对象添加一些额外的职责。
 
 
-**第六种：代理（Proxy）**
+**第六种：代理模式（Proxy）**
 
 为其他对象提供一种代理以控制对这个对象的访问。
 
@@ -120,13 +120,13 @@ spring中用到的包装器模式在类名上有两种表现：一种是类名�
 
 spring的Proxy模式在aop中有体现，比如JdkDynamicAopProxy和Cglib2AopProxy。
 
-**第七种：观察者（Observer）**
+**第七种：观察者模式（Observer）**
 
 定义对象间的一种一对多的依赖关系，当一个对象的状态发生改变时，所有依赖于它的对象都得到通知并被自动更新。
 
 spring中Observer模式常用的地方是listener的实现。如ApplicationListener。
 
-**第八种：策略（Strategy）**
+**第八种：策略模式（Strategy）**
 
 定义一系列的算法，把它们一个个封装起来，并且使它们可相互替换。本模式使得算法可独立于使用它的客户而变化。
 
@@ -134,9 +134,49 @@ spring中在实例化对象的时候用到Strategy模式
 
 在SimpleInstantiationStrategy中有如下代码说明了策略模式的使用情况：
 
-![](image/strategy-code.jpg)
+```java
 
-第九种：模板方法（Template Method）
+@Override
+	public Object instantiate(RootBeanDefinition bd, @Nullable String beanName, BeanFactory owner) {
+		// Don't override the class with CGLIB if no overrides.
+		if (bd.getMethodOverrides().isEmpty()) {
+			Constructor<?> constructorToUse; //指定构造器或者生成的对象工厂方法来对Bean进行实例化
+			synchronized (bd.constructorArgumentLock) {
+				constructorToUse = (Constructor<?>) bd.resolvedConstructorOrFactoryMethod;
+				if (constructorToUse == null) {
+					final Class<?> clazz = bd.getBeanClass();
+					if (clazz.isInterface()) {
+						throw new BeanInstantiationException(clazz, "Specified class is an interface");
+					}
+					try {
+						if (System.getSecurityManager() != null) {
+							constructorToUse = AccessController.doPrivileged(
+									(PrivilegedExceptionAction<Constructor<?>>) () ->
+											clazz.getDeclaredConstructor());
+						}
+						else {
+							constructorToUse =	clazz.getDeclaredConstructor();
+						}
+						bd.resolvedConstructorOrFactoryMethod = constructorToUse;
+					}
+					catch (Throwable ex) {
+						throw new BeanInstantiationException(clazz, "No default constructor found", ex);
+					}
+				}
+			}
+			//通过BeanUtils进行实例化，这个BeanUtils的实例化通过Constructor来完成
+			return BeanUtils.instantiateClass(constructorToUse);
+		}
+		else {
+			// Must generate CGLIB subclass.
+			//使用CGLIB来实例化对象
+			return instantiateWithMethodInjection(bd, beanName, owner);
+		}
+	}
+
+```
+
+第九种：模板方法模式（Template Method）
 
 定义一个操作中的算法的骨架，而将一些步骤延迟到子类中。Template Method使得子类可以不改变一个算法的结构即可重定义该算法的某些特定步骤。
 
