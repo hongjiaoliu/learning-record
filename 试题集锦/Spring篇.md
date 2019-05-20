@@ -1,4 +1,17 @@
-### BeanFactory 和 ApplicationContext 有什么区别
+
+<a href="#1">BeanFactory 和 ApplicationContext 有什么区别</a>
+<a href="#2">Spring Bean 的生命周期</a>
+<a href="#3">Spring IOC 如何实现</a>
+<a href="#4">说说 Spring AOP</a>
+<a href="#5">Spring AOP 实现原理</a>
+<a href="#6">动态代理（cglib 与 JDK）</a>
+<a href="#7">Spring 事务实现方式</a>
+<a href="#8">Spring 事务底层原理</a>
+<a href="#10">Spring MVC 运行流程</a>
+<a href="#11">Spring 的单例实现原理</a>
+<a href="#12">Spring 框架中用到了哪些设计模式</a>
+
+### <a name="1">BeanFactory 和 ApplicationContext 有什么区别</a>
 
 1. 概念
   + Bean 工厂（com.springframework.beans.factory.BeanFactory）是Spring 框架最核心的接口，它提供了高级IoC 的配置机制
@@ -11,7 +24,7 @@
   + ApplicationContext是对BeanFactory的扩展，提供了更多的功能
 
 
-### Spring Bean 的生命周期
+### <a name="2">Spring Bean 的生命周期</a>
 
 1. Bean的建立
 
@@ -46,7 +59,7 @@
   如果有任何的BeanPostProcessors实例与Bean实例关联，则执行BeanPostProcessors实例的ProcessaAfterInitialization()方法
   此时，Bean已经可以被应用系统使用，并且将保留在BeanFactory中直到它不在被使用
 
-### Spring IOC 如何实现
+### <a name="3">Spring IOC 如何实现</a>
 1. 概念：
 
 IOC: Inversion of Control(控制反转)是一种设计思想，就是容器控制应用程序所需要外部资源的创建和管理，然后将其反转给应用程序。对象及其依赖对象的创建及维护都不需要在应用程序中实现，将其交给IOC容器去管理。传统的开发中，我们自己在对象内部创建依赖对象并注入当前对象，完成依赖关系的维护；对于IOC而言，它强调是将主动变为被动，由IOC容器来负责依赖对象的创建和查找，由IOC容器来进行注入组合对象，我们只需要在相关的配置文件中维护对象之间的依赖关系即可。
@@ -71,11 +84,11 @@ DI: Dependency Injection，即“依赖注入”。其实IOC和DI本就是同一
     + 原理是：通过反射机制实现的，在实例化一个类时，它通过反射调用类中set方法将事先保存在HashMap中的类属性注入到类中
 
 
-### 说说 Spring AOP
+### <a name="4">说说 Spring AOP</a>
 
   AOP（Aspect Orient Programming），作为面向对象编程的一种补充，广泛应用于处理一些具有横切性质的系统级服务，如事务管理、安全检查、缓存、对象池管理等。AOP 实现的关键就在于 AOP 框架自动创建的 AOP 代理，AOP 代理则可分为静态代理和动态代理两大类，其中静态代理是指使用 AOP 框架提供的命令进行编译，从而在编译阶段就可生成 AOP 代理类，因此也称为编译时增强；而动态代理则在运行时借助于 JDK 动态代理、CGLIB 等在内存中“临时”生成 AOP 动态代理类，因此也被称为运行时增强。
 
-### Spring AOP 实现原理
+### <a name="5">Spring AOP 实现原理</a>
 
   + Spring AOP 无需使用任何特殊命令对 Java 源代码进行编译，它采用运行时动态地、在内存中临时生成“代理类”的方式来生成 AOP 代理。
 
@@ -84,7 +97,7 @@ DI: Dependency Injection，即“依赖注入”。其实IOC和DI本就是同一
   + 代理对象的方法 = 增强处理 + 被代理对象的方法
 
 
-### 动态代理（cglib 与 JDK）
+### <a name="6">动态代理（cglib 与 JDK）</a>
 
 1. CGLIB
 
@@ -103,7 +116,7 @@ DI: Dependency Injection，即“依赖注入”。其实IOC和DI本就是同一
   + CGlib动态代理是通过继承业务类，生成的动态代理类是业务类的子类，通过重写业务方法进行代理；
 
 
-### Spring 事务实现方式
+### <a name="7">Spring 事务实现方式</a>
 
 1. 编程式事务管理（需要手动编写代码，在实际开发中很少使用）
 
@@ -116,13 +129,13 @@ DI: Dependency Injection，即“依赖注入”。其实IOC和DI本就是同一
   + 基于注解的方式，配置简单，需要在业务层类中添加注解
 
 
-### Spring 事务底层原理
+### <a name="8">Spring 事务底层原理</a>
 
 1. 作用
 
   Spring事务处理，是将事务处理的工作统一起来，并为事务处理提供通用的支持。
 
-2. 划分处理单元——IOC(由于spring解决的问题是对单个数据库进行局部事务处理的，具体的实现首相用spring中的IOC划分了事务处理单元。并且将对事务的各种配置放到了ioc容器中（设置事务管理器，设置事务的传播特性及隔离机制）。)
+2. 划分处理单元——IOC(由于spring解决的问题是对单个数据库进行局部事务处理的，具体的实现首先用spring中的IOC划分了事务处理单元。并且将对事务的各种配置放到了ioc容器中（设置事务管理器，设置事务的传播特性及隔离机制）。)
 
 3. AOP拦截需要进行事务处理的类(Spring事务处理模块是通过AOP功能来实现声明式事务处理的，具体操作（比如事务实行的配置和读取，事务对象的抽象），用TransactionProxyFactoryBean接口来使用AOP功能，生成proxy代理对象，通过TransactionInterceptor完成对代理方法的拦截，将事务处理的功能编织到拦截的方法中。
 读取ioc容器事务配置属性，转化为spring事务处理需要的内部数据结构（TransactionAttributeSourceAdvisor），转化为TransactionAttribute表示的数据对象。)
@@ -141,7 +154,7 @@ spring委托给具体的事务处理器实现。实现了一个抽象和适配�
 
   支持不同数据源，在底层进行封装，可以做到事务即开即用，这样的好处是：即使有其他的数据源事务处理需要，Spring也提供了一种一致的方式。
 
-### Spring MVC 运行流程
+### <a name="9">Spring MVC 运行流程</a>
 
 1. 用户发送请求到DispatchServlet
 
@@ -172,11 +185,11 @@ spring委托给具体的事务处理器实现。实现了一个抽象和适配�
 ![](image/spring-mvc.png)
 
 
-### Spring MVC 启动流程
+###  <a name="10">Spring MVC 启动流程</a>
 
 ![](image/web-init-flowjpg)
 
-### Spring 的单例实现原理
+### <a name="11">Spring 的单例实现原理</a>
 
   采用单例注册表的方式
 
@@ -245,7 +258,7 @@ public abstract class AbstractBeanFactory implements ConfigurableBeanFactory{
 }     
 ```
 
-### Spring 框架中用到了哪些设计模式
+### <a name="12">Spring 框架中用到了哪些设计模式</a>
 
 [参考](../主流框架/Spring/Spring中用到的设计模式.md)
 

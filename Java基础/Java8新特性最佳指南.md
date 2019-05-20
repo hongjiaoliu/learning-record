@@ -918,7 +918,7 @@ System.out.println(String); // Nov 03,2014 - 07:13
 和java.text.NumberFormat不一样的是新版的DateTimeFormatter是不可变的，所以它是线程安全的。
 关于时间日期格式的详细信息在这里。
 
-#### <a name="12">Annotations(注解)</a>**
+#### <a name="12">Annotations(注解)</a>
 
 在Java 8中支持多重注解了，先看个例子来理解一下是什么意思。
 首先定义一个包装类Hints注解用来放置一组具体的Hint注解：
@@ -972,6 +972,6 @@ System.out.println(hints2.length); // 2
 @interface MyAnnotation{}
 ```
 
-##### <a name="13">Whete to go from here?</a>**
+##### <a name="13">Whete to go from here?</a>
 
 关于Java 8的新特性就写到这了，肯定还有更多的特性等待发掘。JDK 1.8里还有很多很有用的东西，比如 Arrays.parallelSort, StampedLock和 CompletableFuture等等。
