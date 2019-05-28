@@ -1,5 +1,9 @@
 # learning-record - 学习轨迹记录
 
+
+### 5月28号
++ [RabbitMQ详解](消息队列/RabbitMQ详解.md)
+
 ### 5月22号
 + 学习面试集锦-线程篇
 
