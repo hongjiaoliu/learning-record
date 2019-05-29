@@ -1,5 +1,7 @@
 # learning-record - 学习轨迹记录
 
+### 5月29号
++ [DNS解析过程](架构/DNS的解析过程.md)
 
 ### 5月28号
 + [RabbitMQ详解](消息队列/RabbitMQ详解.md)
