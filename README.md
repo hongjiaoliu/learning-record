@@ -1,5 +1,8 @@
 # learning-record - 学习轨迹记录
 
+### 6月6号
++ [TCP的三次握手与四次挥手](https://blog.csdn.net/qzcsu/article/details/72861891)
+
 ### 5月29号
 + [DNS解析过程](架构/DNS的解析过程.md)
 
