@@ -1,5 +1,8 @@
 # learning-record - 学习轨迹记录
 
+### 6月10号
++ [集合篇-解决hash冲突的几种方式](试题集锦/集合篇.md)
+
 ### 6月6号
 + [TCP的三次握手与四次挥手](https://blog.csdn.net/qzcsu/article/details/72861891)
 
