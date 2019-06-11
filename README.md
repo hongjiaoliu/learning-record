@@ -1,5 +1,8 @@
 # learning-record - 学习轨迹记录
 
+### 6月11号
++ [Spring Cloud Eureka源码分析](https://blog.csdn.net/chayangdz/article/details/82012937)
+
 ### 6月10号
 + [集合篇-解决hash冲突的几种方式](试题集锦/集合篇.md)
 + 补充极客时间-数据结构与算法课程链接
