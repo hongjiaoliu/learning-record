@@ -1,5 +1,8 @@
 # learning-record - 学习轨迹记录
 
+### 6月12好
++ [Redisson（1）分布式锁——如何解决死锁问题](https://blog.csdn.net/xxcupid/article/details/88120581)
+
 ### 6月11号
 + [Spring Cloud Eureka源码分析](https://blog.csdn.net/chayangdz/article/details/82012937)
 
