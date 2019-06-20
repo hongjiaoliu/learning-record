@@ -1,8 +1,10 @@
 # learning-record - 学习轨迹记录
 
 ### 6月20号
+
 + [HashMap,LinkedHashMap,TreeMap的区别](集合/HashMap,LinkedHashMap,TreeMap的区别.md)
-+ [对CountDownLatch的理解](../Java高阶/并发编程/《Java并发编程的艺术》读书笔记/8.1 等待多个线程完成的CountDownLatch.md)
+
++ [对CountDownLatch的理解](Java高阶/并发编程/《Java并发编程的艺术》读书笔记/8.1 等待多个线程完成的CountDownLatch.md)
 
 ### 6月12号
 + [Redisson（1）分布式锁——如何解决死锁问题](https://blog.csdn.net/xxcupid/article/details/88120581)
