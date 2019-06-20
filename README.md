@@ -8,6 +8,8 @@
 
 + [同步屏障CyclicBarrier的理解](Java高阶/并发编程/《Java并发编程的艺术》读书笔记/8.2同步屏障CyclicBarrier.md)
 
++ [kafka入门：简介、使用场景、设计原理、主要配置及集群搭建](http://www.aboutyun.com/thread-9341-1-1.html)
+
 ### 6月12号
 + [Redisson（1）分布式锁——如何解决死锁问题](https://blog.csdn.net/xxcupid/article/details/88120581)
 
