@@ -1,5 +1,10 @@
 # learning-record - 学习轨迹记录
 
+### 6月21号
++ 《Java并发编程的艺术》 8.3 控制并发线程数的Semaphore
+
++ 《Java并发编程的艺术》 8.4 线程间交换数据的Exchanger
+
 ### 6月20号
 
 + [HashMap,LinkedHashMap,TreeMap的区别] (集合/HashMap,LinkedHashMap,TreeMap的区别.md)
