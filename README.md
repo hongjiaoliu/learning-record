@@ -2,7 +2,7 @@
 
 ### 6月22号
 
-+ Redi中String、List、Hash、Set、ZSet 类型及操作总结 
++ Redis中String、List、Hash、Set、ZSet 类型及操作总结
 
 ### 6月21号
 + 《Java并发编程的艺术》 8.3 控制并发线程数的Semaphore
