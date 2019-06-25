@@ -1,5 +1,8 @@
 # learning-record - 学习轨迹记录
 
+### 6月25号
++ [MySQL中MyISAM和InnoDB的索引方式以及区别与选择](https://blog.csdn.net/ljfphp/article/details/80029968)
+
 ### 6月22号
 
 + Redis中String、List、Hash、Set、ZSet 类型及操作总结
