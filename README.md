@@ -4,6 +4,8 @@
 
 + [如何保证消息消费的幂等性](https://www.cnblogs.com/mengchunchen/p/10007537.html)
 
++ [Java学习笔记：JIT](https://www.jianshu.com/p/04b300481ea3)
+
 ### 6月25号
 + [MySQL中MyISAM和InnoDB的索引方式以及区别与选择](https://blog.csdn.net/ljfphp/article/details/80029968)
 
