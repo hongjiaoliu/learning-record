@@ -1,5 +1,11 @@
 # learning-record - 学习轨迹记录
 
+### 6月30号
+
++ [Java的Object.clone()方法与对象的深浅拷贝](https://www.cnblogs.com/nickhan/p/8569329.html)
++ [Spring常用的三种注入方式](https://www.cnblogs.com/moxiaotao/p/9304810.html)
++ [HashTable和HashMap的区别详解](https://www.cnblogs.com/williamjie/p/9099141.html)
+
 ### 6月29号
 
 + [如何保证消息消费的幂等性](https://www.cnblogs.com/mengchunchen/p/10007537.html)
