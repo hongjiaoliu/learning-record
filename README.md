@@ -6,6 +6,10 @@
 
 + [Java NIO？看这一篇就够了！](https://blog.csdn.net/forezp/article/details/88414741)
 
++ [一致性hash](https://mp.weixin.qq.com/s/yimfkNYF_tIJJqUIzV7TFA)
+
++ [快速排序 详解（快速排序 双路快排 三路快排）](https://blog.csdn.net/k_koris/article/details/80585979)
+
 ## 七月
 
 ### 6月30号
