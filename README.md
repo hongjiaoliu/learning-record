@@ -1,5 +1,13 @@
 # learning-record - 学习轨迹记录
 
+### 7月1号
+
++ [Spring @CrossOrigin 注解原理](https://my.oschina.net/u/3574106/blog/3022246)
+
++ [Java NIO？看这一篇就够了！](https://blog.csdn.net/forezp/article/details/88414741)
+
+## 七月
+
 ### 6月30号
 
 + [Java的Object.clone()方法与对象的深浅拷贝](https://www.cnblogs.com/nickhan/p/8569329.html)
