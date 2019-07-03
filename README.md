@@ -1,7 +1,10 @@
 # learning-record - 学习轨迹记录
 
 ### 7月3号
+
 + java 异常详解
+
++ [CAP理论、BASE理论](架构/CAP理论、BASE理论.md)
 
 ### 7月2号
 
