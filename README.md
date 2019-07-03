@@ -6,6 +6,8 @@
 
 + [CAP理论、BASE理论](架构/CAP理论、BASE理论.md)
 
++ [从CAP理论中分析Eureka与zookeeper的区别](架构/从CAP理论中分析Eureka与zookeeper的区别.md)
+
 ### 7月2号
 
 + 整理基础算法
