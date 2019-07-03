@@ -34,7 +34,7 @@ PlatformTransactionManager接口中定义了三个方法：
 ```
 Public interface PlatformTransactionManager()...{  
 
-    // Return a currently active transaction or create a new one, according to the specified propagation behavior
+    // Return a currently active transaction or create a new one, according to the specified propagation( /,prɒpə'ɡeɪʃən/) behavior
     //（根据指定的传播行为，返回当前活动的事务或创建一个新事务。）
     TransactionStatus getTransaction(TransactionDefinition definition) throws TransactionException;
 
@@ -162,7 +162,7 @@ TransactionDefinition 接口中定义了五个表示隔离级别的常量：
 
 + TransactionDefinition.PROPAGATION_SUPPORTS： 如果当前存在事务，则加入该事务；如果当前没有事务，则以非事务的方式继续运行。
 
-+ TransactionDefinition.PROPAGATION_MANDATORY： 如果当前存在事务，则加入该事务；如果当前没有事务，则抛出异常。（mandatory：强制性）
++ TransactionDefinition.PROPAGATION_MANDATORY：(/'mændət(ə)rɪ/) 如果当前存在事务，则加入该事务；如果当前没有事务，则抛出异常。（mandatory：强制性）
 
 **不支持当前事务的情况**：
 
@@ -225,3 +225,8 @@ public interface TransactionStatus{
 
 
 > 转自： https://juejin.im/post/5b00c52ef265da0b95276091
+
+
+### 学习记录
+
++ 2019-07-03 11点 am
