@@ -1,5 +1,9 @@
 # learning-record - 学习轨迹记录
 
+### 7月2号
+
++ 整理基础算法
+
 ### 7月1号
 
 + [Spring @CrossOrigin 注解原理](https://my.oschina.net/u/3574106/blog/3022246)
