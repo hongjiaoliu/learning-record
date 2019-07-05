@@ -1,5 +1,11 @@
 # learning-record - 学习轨迹记录
 
+### 7月5号
+
++ 复习hashMap concurrentHashmap
+
++ [为什么 ConcurrentHashMap 的读操作不需要加锁？](https://mp.weixin.qq.com/s/Id29MyFHddStZTznSKn3uQ)
+
 ### 7月3号
 
 + java 异常详解
