@@ -53,7 +53,7 @@ RabbitMQ 是一个开源的 AMQP 实现，服务器端用Erlang语言编写，�
 
 Direct Exchange 是 RabbitMQ 默认的交换机模式，也是最简单的模式，根据key全文匹配去寻找队列。
 
-![](image/rabbitMq_direct.png)
+![](../image/rabbitMq_direct.png)
 
 第一个 X - Q1 就有一个 binding key，名字为 orange； X - Q2 就有 2 个 binding key，名字为 black 和 green。当消息中的 路由键 和 这个 binding key 对应上的时候，那么就知道了该消息去到哪一个队列中。
 
@@ -65,9 +65,9 @@ Topic Exchange 转发消息主要是根据通配符。 在这种交换机下，�
 
 在这种交换机模式下：
 
-+ 路由键必须是一串字符，用句号（.） 隔开，比如说 agreements.us，或者 agreements.eu.stockholm 等。
++ ``` 路由键必须是一串字符，用句号（.） 隔开，比如说 agreements.us，或者 agreements.eu.stockholm 等。```
 
-+ 路由模式必须包含一个 星号（*），主要用于匹配路由键指定位置的一个单词，比如说，一个路由模式是这样子：agreements..b.*，那么就只能匹配路由键是这样子的：第一个单词是 agreements，第四个单词是 b。 井号（#）就表示相当于一个或者多个单词，例如一个匹配模式是 agreements.eu.berlin.#，那么，以agreements.eu.berlin 开头的路由键都是可以的。
++ ```路由模式必须包含一个 星号（*），主要用于匹配路由键指定位置的一个单词，比如说，一个路由模式是这样子：agreements..b.*，那么就只能匹配路由键是这样子的：第一个单词是 agreements，第四个单词是 b。 井号（#）就表示相当于一个或者多个单词，例如一个匹配模式是 agreements.eu.berlin.#，那么，以agreements.eu.berlin 开头的路由键都是可以的。```
 
 
 具体代码发送的时候还是一样，第一个参数表示交换机，第二个参数表示 routing key，第三个参数即消息。如下：
@@ -78,9 +78,9 @@ rabbitTemplate.convertAndSend("testTopicExchange","key1.a.c.key2", " this is  Ra
 
 topic 和 direct 类似, 只是匹配上支持了"模式", 在"点分"的 routing_key 形式中, 可以使用两个通配符:
 
-+ * 表示一个词
++ ```* 表示一个词```
 
-+ # 表示0个或者多个词  
++ ``` # 表示0个或者多个词  ```
 
 
 ### Headers Exchange
