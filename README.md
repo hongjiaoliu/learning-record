@@ -1,5 +1,8 @@
 # learning-record - 学习轨迹记录
 
+### 7月11号
++ [面试不懂分布式锁？那得多吃亏。。。](https://mp.weixin.qq.com/s/gUDMP5FVPfS7Id4IyHp02A)
+
 ### 7月9号
 
 + [HashMap的扩容机制 为什么是2幂](https://blog.csdn.net/dalong3976/article/details/83934609)
