@@ -1,15 +1,17 @@
+> 转自 https://juejin.cn/post/7161207862989946916 
+
 ![img.png](img.png)
 
 接上一篇文章《DNS中有哪些值得学习的优秀设计》 最后遗留的两个问题。
 
 ![img_1.png](img_1.png)
 
-+ 从抓包可以看出，DNS在传输层上使用了UDP协议，那它只用UDP吗？
-+ DNS的IPV4根域名只有13个，这里面其实有不少都部署在漂亮国，那是不是意味着，只要他们不高兴了，切断我们的访问，我们的网络就得瘫痪了呢？
++ 从抓包可以看出，DNS在传输层上使用了**UDP协议**，那它只用UDP吗？
++ DNS的**IPV4根域名**只有<font color='red'>13个</font>，这里面其实有不少都部署在漂亮国，那是不是意味着，只要他们不高兴了，切断我们的访问，我们的网络就得瘫痪了呢？
 
 # DNS是基于UDP的应用层协议吗？
 
-当我们执行dig www.baidu.com时，操作系统会发出dns请求，去询问www.baidu.com域名对应的IP是多少。
+当我们执行dig <font color='red'> www.baidu.com </font>时，操作系统会发出 <font color='red'>dns请求</font>，去询问 <font color='red'>www.baidu.com</font>域名对应的IP是多少。
 
 ```shell
 $ dig www.baidu.com
@@ -34,15 +36,15 @@ www.a.shifen.com.	298	IN	A	180.101.49.11
 
 ![img_2.png](img_2.png)
 
-但是，其实 RFC 5966 中提到。
+但是，其实 <font color='red'>RFC 5966</font> 中提到。
 
 ```shell
 # https://www.rfc-editor.org/rfc/rfc5966
  This document updates the requirements for the support of TCP as a transport protocol for DNS implementations.
 ```
-也就是说**虽然我们大部分情况下看到DNS使用UDP**，但**其实DNS也是支持TCP**的。
+也就是说 **虽然我们大部分情况下看到DNS使用UDP**，但**其实DNS也是支持TCP**的。
 
-当我们在dig命令里加上+tcp的选项时，就可以强制DNS查询使用TCP协议进行数据传输。
+当我们在dig命令里加上 <font color='red'> +tcp </font> 的选项时，就可以强制DNS查询使用TCP协议进行数据传输。
 
 ```shell
 $ dig +tcp www.baidu.com
@@ -74,7 +76,7 @@ www.a.shifen.com.	600	IN	A	180.101.49.12
 
 ## 为什么有UDP了还要用到TCP？
 
-我们知道网络传输就像是在某个管道里传输数据包，这个管道有一定的粗细，叫MTU。超过MTU则会在发送端的网络层进行切分，然后在接收端的网络层进行重组。而重组是需要有个缓冲区的，这个缓冲区的大小有个最小值，是576Byte。
+我们知道网络传输就像是在某个管道里传输数据包，这个管道有一定的粗细，叫 <font color='red'>MTU</font>。超过MTU则会在发送端的网络层进行切分，然后在接收端的网络层进行重组。而重组是需要有个缓冲区的，这个缓冲区的大小有个最小值，是576Byte。
 
 IP层分片后传输会加大丢包的概率，且IP层本身并不具备重传的功能，因此需要尽量避免IP层分片。
 
